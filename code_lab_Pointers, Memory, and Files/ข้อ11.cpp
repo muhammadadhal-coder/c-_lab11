@@ -1,38 +1,38 @@
 #include <iostream>
+
 using namespace std;
 
-int main()
-{
-    int a, b;
-    cin >> a >> b;
-    int* p;
+int main() {
+    // ปิดการ sync กับ stdio ของ C เพื่อเพิ่มความเร็วในการอ่าน/เขียนข้อมูลขนาดใหญ่
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-    // 1) ให้ p ชี้ไปที่ a
-    p =&a;
+    int n;
+    long long k; // ใช้ long long เพราะ k อาจมีค่าได้ถึง 10^9
 
-    // 2) เพิ่มค่าของ a ขึ้น 5 โดยใช้ p
-    
-    *p+=5;
+    if (!(cin >> n >> k)) {
+        return 0;
+    }
 
+    // จองหน่วยความจำบน Heap ตามขนาด n
+    int* arr = new int[n];
 
-    // 3) ให้ p ชี้ไปที่ b
-    p = &b;
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+    }
 
+    // คำนวณจุดเริ่มต้นใหม่หลังจากการหมุน k ครั้ง
+    int start = k % n;
 
-    // 4) คูณค่าของ b ด้วย 3 โดยใช้ p
-    *p *= 3;
+    // พิมพ์สมาชิกทั้งหมดเริ่มจากตำแหน่ง start
+    for (int i = 0; i < n; ++i) {
+        int idx = (start + i) % n;
+        cout << arr[idx] << (i == n - 1 ? "" : " ");
+    }
+    cout << "\n";
 
+    // คืนหน่วยความจำที่จองไว้ด้วย new[]
+    delete[] arr;
 
-    // 5) ให้ q ชี้ไปที่เดียวกับที่ p ชี้อยู่
-    int* q =p;
-
-    // 6) ลดค่าที่ q ชี้อยู่ลง 1 โดยใช้ q
-    *q -= 1;
-
-
-    // 7) ให้ c เท่ากับค่าที่ p ชี้อยู่ บวกกับค่าที่ q ชี้อยู่
-    int c =*p + *q;
-
-    cout << a << " " << b << " " << c << "\n";
     return 0;
 }

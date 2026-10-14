@@ -1,0 +1,21 @@
+# ไฟล์ executable
+*.exe
+
+# ไฟล์ JSON
+*.json
+
+# ไฟล์รูปภาพ
+*.png
+*.jpg
+*.jpeg
+
+# ไฟล์ที่คอมไพล์จาก C++
+*.o
+*.out
+
+# ไฟล์ชั่วคราวของ VS Code
+.vscode/
+
+# ไฟล์ระบบ Windows
+Thumbs.db
+Desktop.ini
